@@ -20,7 +20,7 @@ Stand *buscarStand(Stand *cabeza, int numero) {
 int actualizarStand(Stand **cabeza, int numero, float ancho, float largo, StandEstado estado) {
     }
 
-int borrarStand(Stand *cabeza, int numero) {
+int borrarStand(Stand **cabeza, int numero) {
    }
 
 void imprimirLista(const Stand *cabeza) {
