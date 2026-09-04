@@ -7,7 +7,7 @@ float calcularArea(const Stand *stand) {
         return 0.0f;
     }
     return stand->ancho * stand->largo;
-   }
+}
 
 const char *estadoAString(StandEstado estado) {
     switch (estado) {
