@@ -1,12 +1,11 @@
-# POO-26-PDs
-
-Repositorio oficial para actividades individuales de la asignatura **Programación Orientada a Objetos**.
-
-Este curso está dirigido a estudiantes de **tercer semestre de Ingeniería en Software**, con antecedentes en algoritmia, lógica computacional básica y programación estructurada.
-
-## Pruebas de Desempeño
-| *PD1*  | ..
-|---|---|
-| Título | PD-1 |
-| Fecha de Entrega | Primer viernes de Septiembre |
-| Instrucciones | [Ver descripción completa en PD1](PD1.md) |
+# Diseño de la Solución
+Este proyecto implementa una lista simplemente ligada en C para la gestión de espacios comerciales en la FILEY App el sistema se basa en la estructura dinámica Stand, la cual almacena las dimensiones, el identificador, el estado comercial y un puntero hacia el siguiente nodo de la cadena. La gestión de los datos opera completamente en el Heap mediante reserva dinámica de memoria, permitiendo que la lista crezca o se reduzca en tiempo de ejecución de manera eficiente. 
+La arquitectura del código mantiene una separación modular estricta. Las definiciones y prototipos residen en el header público, la simulación y pruebas unitarias se controla desde main.c, y la implementación de la lógica recae sobre stand.c. El eje central de este diseño es el ordenamiento automático es decir la lista se mantiene siempre ordenada de forma ascendente con base en el área calculada de cada stand. 
+## Decisiones Importantes
+En mi caso fueron 3 que ordeno a continuación
+Manejo de la reordenación: En la función de actualización, se implementó una evaluación condicional. Si las nuevas dimensiones no alteran el área total, los datos se actualizan directamente en la posición actual del nodo. Si el área cambia, el nodo se desconecta limpiamente de la lista, actualiza sus datos y es enviado de nuevo a la función insertarOrdenadoPorArea. Esto reutiliza la lógica de inserción y evita escribir algoritmos de ordenamiento redundantes.
+Cálculo dinámico del área: Debido a que el diseño de la estructura Stand omite el área como atributo estático, se tomó la decisión de invocar calcularArea() cada vez que el programa necesita comparar nodos durante las inserciones o al imprimir el catálogo. 
+Gestión del estado mediante punteros dobles: Todas las funciones que alteran la estructura de la lista sean insertar, actualizar, borrar, liberar utilizan punteros dobles Esto garantiza que las modificaciones al primer elemento de la lista se guarden correctamente en la memoria del módulo principal. 
+## Retos Enfrentados y Soluciones
+Eliminar un nodo en medio de la lista sin romper los enlaces para ello se implementó un algoritmo de dos punteros actual y anterior. Al localizar el stand a eliminar, se conecta el puntero del nodo anterior con el sucesor del nodo actual antes de ejecutar la función free(), garantizando la continuidad de la cadena. Este fue el primer reto
+Manejar correctamente la inserción del primer elemento o de un stand más pequeño que el primer elemento para esto se desarrolló una condición de retorno inicial si la lista está vacía o el área del nuevo stand es menor al de la cabeza actual, el nuevo nodo apunta a la antigua cabeza y se convierte inmediatamente en el inicio de la lista, evitando errores de segmentación.
