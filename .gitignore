@@ -1,4 +1,5 @@
 stands_app
+*.exe
 *.o
 *.a
 *.so
