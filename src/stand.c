@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "stand.h"
 
+
 float calcularArea(const Stand *stand) {
     if (stand == NULL) {
         return 0.0f;
@@ -20,7 +21,7 @@ const char *estadoAString(StandEstado estado) {
         default:
             return "DESCONOCIDO";
     }
-    }
+ }
 
 Stand *crearStand(int numero, float ancho, float largo, StandEstado estado) {
     Stand *nuevo = (Stand *)malloc(sizeof(Stand));
