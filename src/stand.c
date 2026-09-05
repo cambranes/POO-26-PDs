@@ -102,7 +102,7 @@ int actualizarStand(Stand **cabeza, int numero, float ancho, float largo, StandE
     actual->estado = estado;
     actual->siguiente = NULL;
 
-    void insertarOrdenadoPorArea(Stand **cabeza, Stand *nuevo);
+    insertarOrdenadoPorArea(cabeza, actual);
 
     return 1;
     }
