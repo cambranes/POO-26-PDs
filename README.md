@@ -1,3 +1,4 @@
+
 # POO-26-PDs
 
 Repositorio oficial para actividades individuales de la asignatura **Programación Orientada a Objetos**.
