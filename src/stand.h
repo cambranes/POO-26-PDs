@@ -15,10 +15,7 @@ typedef struct Stand {
     struct Stand *siguiente;
 } Stand;
 
-/*
- * Gestión de memoria: crearStand() reserva memoria dinámica (heap) y la lista
- * asume propiedad de los nodos insertados; libera con borrarStand() o liberarLista().
- */
+
 float calcularArea(const Stand *stand);
 const char *estadoAString(StandEstado estado);
 
