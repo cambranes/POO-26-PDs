@@ -15,3 +15,5 @@ Thumbs.db
 
 # Salida de ejecución
 *.out
+*.exe
+src/*.exe
