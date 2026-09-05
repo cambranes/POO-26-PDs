@@ -3,27 +3,26 @@
 #include "stand.h"
 
 float calcularArea(const Stand *stand) {
-    if (stand == NULL) {
+        if (stand == NULL) {
         return 0.0f;
-    }
+        }
     return stand->ancho * stand->largo;
-}
+   }
 
 const char *estadoAString(StandEstado estado) {
     switch (estado) {
         case DISPONIBLE:
-            return "Disponible";
-        case RESERVADO:
+            return "Disponible";   case RESERVADO:
             return "Reservado";
         case VENDIDO:
             return "Vendido";
         default:
-            return "Desconocido";
+            return "Desconocido";}
+    
     }
-}
 
 Stand *crearStand(int numero, float ancho, float largo, StandEstado estado) {
-    Stand *nuevo = malloc(sizeof(Stand));
+   Stand *nuevo = malloc(sizeof(Stand));
 
     if (nuevo == NULL) {
         return NULL;
@@ -36,7 +35,7 @@ Stand *crearStand(int numero, float ancho, float largo, StandEstado estado) {
     nuevo->siguiente = NULL;
 
     return nuevo;
-}
+    }
 
 void insertarOrdenadoPorArea(Stand **cabeza, Stand *nuevo) {
     if (cabeza == NULL || nuevo == NULL) {
@@ -45,6 +44,7 @@ void insertarOrdenadoPorArea(Stand **cabeza, Stand *nuevo) {
 
     if (*cabeza == NULL ||
         calcularArea(nuevo) < calcularArea(*cabeza)) {
+
         nuevo->siguiente = *cabeza;
         *cabeza = nuevo;
         return;
@@ -73,7 +73,7 @@ Stand *buscarStand(Stand *cabeza, int numero) {
     }
 
     return NULL;
-}
+    }
 
 int actualizarStand(Stand **cabeza, int numero,
                     float ancho, float largo, StandEstado estado) {
@@ -93,24 +93,21 @@ int actualizarStand(Stand **cabeza, int numero,
         return 0;
     }
 
-    /* Desconectar el nodo de la lista */
     if (anterior == NULL) {
         *cabeza = actual->siguiente;
     } else {
         anterior->siguiente = actual->siguiente;
     }
 
-    /* Actualizar los datos */
     actual->ancho = ancho;
     actual->largo = largo;
     actual->estado = estado;
     actual->siguiente = NULL;
 
-    /* Volver a insertarlo manteniendo el orden por área */
     insertarOrdenadoPorArea(cabeza, actual);
 
     return 1;
-}
+    }
 
 int borrarStand(Stand **cabeza, int numero) {
     if (cabeza == NULL || *cabeza == NULL) {
@@ -170,5 +167,4 @@ void liberarLista(Stand **cabeza) {
     }
 
     *cabeza = NULL;
-}
-}
+    }
